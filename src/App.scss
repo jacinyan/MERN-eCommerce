@@ -1,0 +1,22 @@
+@charset 'utf-8';
+
+// import font-style 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+
+//color schemes
+$purple: #c9168d;
+$pink: #fa7c91;
+$dark: #333;
+$beige-lighter: rgb(245, 245, 245) ;
+
+//global variables
+$family-sans-serif: 'Noto Sans TC', sans-serif;
+$primary: $purple;
+$link: $dark;
+$danger: $pink;
+
+//component variables
+$body-background-color: $beige-lighter;
+
+//override before importing bulma
+@import '../node_modules/bulma/bulma.sass';
