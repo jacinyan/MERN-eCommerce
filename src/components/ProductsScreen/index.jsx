@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
-import style from './index.module.scss'
+import Carousel from 'components/Carousel'
 
 
 export default class ProductsScreen extends Component {
     render() {
         return (
-            <div className={style.productsScreen}>
-                <p>p comp</p>
-            </div>
+            <>
+                <Carousel />
+                <div className='products-screen'>
+                    <p>p comp</p>
+                </div>
+            </>
         )
     }
 }

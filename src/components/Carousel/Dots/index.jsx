@@ -2,40 +2,39 @@ import React from 'react'
 
 const slides = [
     {
-        id: 1,
+        title: '1slide',
         description: '1st slide',
-        url: '../../../../public/images/slider/1.jpg'
+        url: 'https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg'
     },
     {
-        id: 2,
+        title: '2slide',
         description: '2nd slide',
-        url: '../../../../public/images/slider/2.jpg'
+        url: 'https://mdbootstrap.com/img/Photos/Slides/img%20(131).jpg'
     },
     {
-        id: 3,
+        title: '3slide',
         description: '3rd slide',
-        url: '../../../../public/images/slider/3.jpg'
+        url: 'https://mdbootstrap.com/img/Photos/Slides/img%20(132).jpg'
     },
     {
-        id: 4,
+        title: '4slide',
         description: '4th slide',
-        url: '../../../../public/images/slider/4.jpg'
+        url: 'https://mdbootstrap.com/img/Photos/Slides/img%20(133).jpg'
     },
 
 ]
 
-const Dots = ({activeIndex}) => {
+const Dots = (props) => {
     return (
-        <div className="all-dots">
-            {slides.map((slide, index) => {
-                <span 
-                key={index} 
-                className={`${activeIndex === index? 'dot active-dot' : 'dot'}`}
-                onClick={e => onclick((e.target.value = index))}
-                >
-                   
-                </span>
-            })} 
+        <div className='all-dots'>
+            {slides.map((slide, index) => (
+                <span
+                    key={index}
+                    className={`${props.activeIndex === index ? 'dot active-dot' : 'dot'}`}
+                    onClick={e => props.onclick((e.target.value = index))}
+                ></span>
+            )
+            )}
         </div>
     )
 }

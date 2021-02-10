@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import style from './index.module.scss'
 
 export default class Login extends Component {
     render() {
         return (
-            <div className={style.loginWrapper}>
-                <form className={`box ${style.loginBox}`}>
+            <div className='login-wrapper'>
+                <form className='box login-box'>
                     <div className="field">
                         <label className="label">Email</label>
                         <div className="control">

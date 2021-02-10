@@ -2,39 +2,40 @@ import React from 'react'
 
 const slides = [
     {
-        id: 1,
+        title: '1slide',
         description: '1st slide',
-        url: '../../../../public/images/slider/1.jpg'
+        url: 'https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg'
     },
     {
-        id: 2,
+        title: '2slide',
         description: '2nd slide',
-        url: '../../../../public/images/slider/2.jpg'
+        url: 'https://mdbootstrap.com/img/Photos/Slides/img%20(131).jpg'
     },
     {
-        id: 3,
+        title: '3slide',
         description: '3rd slide',
-        url: '../../../../public/images/slider/3.jpg'
+        url: 'https://mdbootstrap.com/img/Photos/Slides/img%20(132).jpg'
     },
     {
-        id: 4,
+        title: '4slide',
         description: '4th slide',
-        url: '../../../../public/images/slider/4.jpg'
+        url: 'https://mdbootstrap.com/img/Photos/Slides/img%20(133).jpg'
     },
 
 ]
 
-const Content = ({activeIndex }) => {
+const Content = ({ activeIndex }) => {
     return (
         <section>
-            {slides.map((slide, index) => 
-            <div
-                key={index}
-                className={index === activeIndex ? "slides active" : inactive}>
-                <img className='slide-image' src={slide.url} alt='' />
-                <h3 className='slide-title'>{slide.title}</h3>
-                <p className='slide-next'>{slide.description}</p>
-            </div>
+            {slides.map((slide, index) =>
+                <div
+                    key={index}
+                    className={index === activeIndex ? 'slides active' : 'inactive'}
+                >
+                    <img className='slide-image' src={slide.url} alt='' />
+                    <h3 className='slide-title'>{slide.title}</h3>
+                    <p className='slide-text'>{slide.description}</p>
+                </div>
             )}
         </section>
     )
