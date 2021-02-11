@@ -9,6 +9,8 @@ const axios = baseURL => {
 }
 
 // for passing 'baseURL' param
-export {axios}
+export {
+    axios
+}
 
 export default axios()

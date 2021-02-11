@@ -1,33 +1,55 @@
 import React, { Component } from 'react'
 import axios from "config/axios";
 import Product from 'components/Product'
+import PubSub from 'pubsub-js'
 
 
 export default class ProductsScreen extends Component {
 
     state = {
-        products: []
+        products: [],
+        sourceProducts: []
     }
 
     componentDidMount() {
-        // fetch('http://localhost:9090/products')
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         this.setState(state => ({ products: [...data, ...state.products] }))
-        //     })
         axios.get('/products')
             .then(response => {
-                console.log(response);
                 return response.data
             }
             )
             .then(data => {
-                this.setState(state => ({ products: [...data, ...state.products] }))
+                this.setState(state => ({ 
+                    products: [...data, ...state.products],
+                    sourceProducts:[...data, ...state.products]
+                }))
             })
             .catch(error => {
                 console.log(error);
             })
 
+        this.token = PubSub.subscribe('toolbox searched', (_, text) => {
+            console.log(text);
+            // 1.Get New Array
+            let _products = [...this.state.sourceProducts]
+
+            // 2. Filter New Array
+            _products = _products.filter(product => {
+                // name: ABcd, text: ab ====> ['AB']
+                // text: '', ===> ["", "","","",""]
+                const matchedArray = product.name.match(new RegExp(text, 'gi'))
+                // return matchedArray !== null
+                return !!matchedArray
+            })
+
+            // 3. Set State
+            this.setState({
+                products: _products
+            })
+        })
+    }
+
+    componentWillUnmount() {
+        PubSub.unsubscribe(this.token)
     }
 
     render() {

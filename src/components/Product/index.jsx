@@ -5,7 +5,7 @@ export default class Product extends Component {
 
     render() {
 
-        const {image, name, tags, price, status} = this.props.product
+        const { image, name, tags, price, status } = this.props.product
         const _pClass = {
             available: 'product',
             unavailable: 'product out-stock'
@@ -19,15 +19,15 @@ export default class Product extends Component {
                             Out of Stock
                         </div>
                         <figure className="image is-4by3">
-                            <img src={image} alt={name} />  
+                            <img src={image} alt={name} />
                         </figure>
                     </div>
                     <p className="p-tags">
-                            {tags}
-                        </p>
-                        <p className="p-names">
-                            {name}
-                        </p>
+                        {tags}
+                    </p>
+                    <p className="p-name">
+                        {name}
+                    </p>
                 </div>
                 <div className="p-footer">
                     <p className="price">{formatPrice(price)}</p>
