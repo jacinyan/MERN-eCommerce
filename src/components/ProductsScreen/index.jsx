@@ -1,16 +1,31 @@
 import React, { Component } from 'react'
-import Carousel from 'components/Carousel'
+import Product from 'components/Product'
 
 
 export default class ProductsScreen extends Component {
     render() {
         return (
-            <>
-                <Carousel />
+            <div>
                 <div className='products-screen'>
-                    <p>p comp</p>
+                    <div className="columns is-multiline is-desktop">
+                        <div className="column is-3">
+                            <Product />
+                        </div>
+                        <div className="column is-3">
+                            <Product />
+                        </div>
+                        <div className="column is-3">
+                            <Product />
+                        </div>
+                        <div className="column is-3">
+                            <Product />
+                        </div>
+                        <div className="column is-3">
+                            <Product />
+                        </div>
+                    </div>
                 </div>
-            </>
+            </div>
         )
     }
 }

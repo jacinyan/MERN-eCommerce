@@ -24,21 +24,19 @@ const slides = [
 
 ]
 
-const Content = ({ activeIndex }) => {
+const Dots = ({activeIndex, onClick}) => {
     return (
-        <section>
-            {slides.map((slide, index) =>
-                <div
+        <div className='dots-group'>
+            {slides.map((_, index) => (
+                <span
                     key={index}
-                    className={index === activeIndex ? 'slides active' : 'inactive'}
-                >
-                    <img className='slide-image' src={slide.url} alt='' />
-                    <h3 className='slide-title'>{slide.title}</h3>
-                    <p className='slide-text'>{slide.description}</p>
-                </div>
+                    className={`${activeIndex === index ? 'dot active-dot' : 'dot'}`}
+                    onClick={() => onClick(index)}
+                ></span>
+            )
             )}
-        </section>
+        </div>
     )
 }
 
-export default Content
+export default Dots

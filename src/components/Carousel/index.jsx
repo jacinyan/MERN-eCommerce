@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import Content from './Content'
-import Arrows from './Arrows'
-import Dots from './Dots'
+import CarouselContent from 'components/CarouselContent'
+import Arrows from 'components/Arrows'
+import Dots from 'components/Dots'
 
 
 const slides = [
@@ -44,8 +44,8 @@ const Carousel = () => {
     },[activeIndex])
 
     return (
-        <div className='slide-container'>
-            <Content activeIndex={activeIndex} />
+        <div className='carousel-container'>
+            <CarouselContent activeIndex={activeIndex} />
             <Arrows
                 prevSlide={() => setActiveIndex(activeIndex < 1 ? length : activeIndex - 1)}
                 nextSlide={() => setActiveIndex(activeIndex === length ? 0 : activeIndex + 1)} />
