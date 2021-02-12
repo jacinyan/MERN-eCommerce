@@ -10,12 +10,12 @@ export default class ToolBox extends Component {
     handleChange = e => {
         const value = e.target.value
         this.setState({ searchText: value })
-        PubSub.publish('toolbox searched', value)
+        PubSub.publish('search', value)
     }
 
     clearSearchText = () => {
         this.setState({ searchText: '' })
-        PubSub.publish('toolbox cleared', '')
+        PubSub.publish('search', '')
     }
 
     render() {

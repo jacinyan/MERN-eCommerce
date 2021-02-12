@@ -27,7 +27,7 @@ export default class ProductsScreen extends Component {
                 console.log(error);
             })
 
-        this.token = PubSub.subscribe('toolbox searched', (_, text) => {
+        this.token = PubSub.subscribe('search', (_, text) => {
             console.log(text);
             // 1.Get New Array
             let _products = [...this.state.sourceProducts]
