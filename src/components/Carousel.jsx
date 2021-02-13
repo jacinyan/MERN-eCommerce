@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import CarouselContent from 'components/CarouselContent'
 import Arrows from 'components/Arrows'
 import Dots from 'components/Dots'
+import PubSub from "pubsub-js";
 
 
 const slides = [
@@ -32,19 +33,45 @@ const length = slides.length - 1
 
 const Carousel = () => {
 
+    const [searchActive, setSearchActive] = useState(false)
+
     const [activeIndex, setActiveIndex] = useState(0)
 
+    // const [timers, setTimers] = useState([])
+
     useEffect(() => {
-      const interval = setInterval(() => {
-        setActiveIndex(activeIndex === length? 0 : activeIndex + 1)
-      }, 5000)
-      return () => {
-        clearInterval(interval)
-      }
-    },[activeIndex])
+        const timer = setInterval(() => {
+            setActiveIndex(activeIndex === length ? 0 : activeIndex + 1)
+        }, 5000)
+
+        // timers.push(timer);
+        // setTimers(timers => timers);
+        // console.log(timers);
+
+
+        const token = PubSub.subscribe('search', (_, text) => {
+            if (text) {
+                setSearchActive(true)
+                return
+            }
+            setSearchActive(false)
+        })
+
+
+        return () => {
+            // console.log('previous timer has been cleared');
+            clearInterval(timer)
+            PubSub.unsubscribe(token)
+        }
+    }, [activeIndex])
+
+    const _cClass = {
+        true: 'carousel-container search-active',
+        false: 'carousel-container'
+    }
 
     return (
-        <div className='carousel-container'>
+        <div className={_cClass[searchActive]}>
             <CarouselContent activeIndex={activeIndex} />
             <Arrows
                 prevSlide={() => setActiveIndex(activeIndex < 1 ? length : activeIndex - 1)}

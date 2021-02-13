@@ -21,7 +21,7 @@ export default class ToolBox extends Component {
     render() {
         return (
             <div className='tool-box'>
-                <div className="logo-text">R-SN'S</div>
+                <div className="logo-text">R-Caps</div>
                 <div className="search-box">
                     <div className="field has-addons">
                         <div className="control">

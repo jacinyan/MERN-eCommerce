@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import axios from "config/axios";
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Product from 'components/Product'
 import PubSub from 'pubsub-js'
-
+import Panel from 'components/Panel'
+import AddInventory from "components/AddInventory";
 
 export default class ProductsScreen extends Component {
 
@@ -18,9 +20,9 @@ export default class ProductsScreen extends Component {
             }
             )
             .then(data => {
-                this.setState(state => ({ 
+                this.setState(state => ({
                     products: [...data, ...state.products],
-                    sourceProducts:[...data, ...state.products]
+                    sourceProducts: [...data, ...state.products]
                 }))
             })
             .catch(error => {
@@ -28,20 +30,16 @@ export default class ProductsScreen extends Component {
             })
 
         this.token = PubSub.subscribe('search', (_, text) => {
-            console.log(text);
-            // 1.Get New Array
             let _products = [...this.state.sourceProducts]
+            // console.log('before filtering', _products);
 
-            // 2. Filter New Array
             _products = _products.filter(product => {
-                // name: ABcd, text: ab ====> ['AB']
-                // text: '', ===> ["", "","","",""]
                 const matchedArray = product.name.match(new RegExp(text, 'gi'))
                 // return matchedArray !== null
                 return !!matchedArray
             })
 
-            // 3. Set State
+            // console.log('after filtering', _products);
             this.setState({
                 products: _products
             })
@@ -52,18 +50,29 @@ export default class ProductsScreen extends Component {
         PubSub.unsubscribe(this.token)
     }
 
+    toAdd = () => {
+        Panel.open({
+            child: AddInventory
+        })
+    }
+
     render() {
         return (
             <div>
                 <div className='products-screen'>
                     <div className="columns is-multiline is-desktop">
-                        {this.state.products.map((product) => (
-                            <div className="column is-3" key={product.id}>
-                                <Product product={product} />
-                            </div>
-                        )
-                        )}
+                        <TransitionGroup component={null}>
+                            {this.state.products.map((product) =>
+                            (
+                                <CSSTransition classNames='product-fade' timeout={300} key={product.id}>
+                                    <div className="column is-3" key={product.id}>
+                                        <Product product={product} />
+                                    </div>
+                                </CSSTransition>
+                            ))}
+                        </TransitionGroup>
                     </div>
+                    <button className="button is-primary add-btn" onClick={this.toAdd}>add</button>
                 </div>
             </div>
         )

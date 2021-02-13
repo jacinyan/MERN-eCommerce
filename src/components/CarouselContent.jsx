@@ -30,7 +30,7 @@ const Content = ({ activeIndex }) => {
             {slides.map((slide, index) =>
                 <div
                     key={index}
-                    className={index === activeIndex ? 'slide active' : 'inactive'}
+                    className={index === activeIndex ? 'slide active' : 'slide inactive'}
                 >
                     <img className='slide-image' src={slide.url} alt='' />
                     <h3 className='slide-title'>{slide.title}</h3>
