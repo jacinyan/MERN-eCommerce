@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from "react-dom";
+import { nanoid } from "nanoid";
 
 const _div = document.createElement('div')
 document.body.appendChild(_div)
@@ -8,20 +9,25 @@ class Panel extends Component {
 
     state = {
         active: false,
-        child: null
+        child: null,
+        callback: () => {
+              
+        }
     }
 
-    open = ({ child }) => {
-        const _addInventory = React.createElement(child, { close: this.close })
+    open = ({ child, callback }) => {
+        const _key = nanoid()
+        const _addInventory = React.createElement(child, { close: this.close, key: _key })
         this.setState({
             active: true,
-            child: _addInventory
+            child: _addInventory,
+            callback: callback
         })
     }
 
-    close = data => {
-        alert(data)
-        this.setState({ active: false })
+    close = data => {   
+        this.setState({ active: false }),
+        this.state.callback(data)
     }
 
     render() {

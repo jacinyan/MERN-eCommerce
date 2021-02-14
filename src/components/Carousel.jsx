@@ -33,9 +33,9 @@ const length = slides.length - 1
 
 const Carousel = () => {
 
-    const [searchActive, setSearchActive] = useState(false)
-
     const [activeIndex, setActiveIndex] = useState(0)
+    
+    const [searchActive, setSearchActive] = useState(false)
 
     // const [timers, setTimers] = useState([])
 

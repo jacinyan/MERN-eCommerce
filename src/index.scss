@@ -126,7 +126,12 @@ body {
 .panel-wrapper {
     position: relative;
     z-index: 1999;
-    
+
+    // .panel {
+    //     transform: translateX(25rem);
+    // transition: all 0.3s ease-in-out;
+    // }
+
     // activated overlay and panel popping out manners
     &.active {
         .overlay {
@@ -185,10 +190,18 @@ body {
     position: relative;
     margin: auto;
     overflow: hidden;
-
+    opacity: 1;
+    visibility: visible;
+    z-index: 10;
+    transition: all 0.3s ease-in-out;
 
     &.search-active {
-        display: none;
+        position: absolute;
+        transform: translateX(-100%);
+        transition: all 0.3s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 0;
     }
 }
 

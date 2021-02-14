@@ -52,7 +52,10 @@ export default class ProductsScreen extends Component {
 
     toAdd = () => {
         Panel.open({
-            child: AddInventory
+            child: AddInventory,
+            callback: data => {
+                console.log('ProductsScreen gave Panel a callback for it to send back data ||', data);
+            }
         })
     }
 
