@@ -30,7 +30,7 @@ const Dots = ({activeIndex, onClick}) => {
             {slides.map((_, index) => (
                 <span
                     key={index}
-                    className={`${activeIndex === index ? 'dot active' : 'dot'}`}
+                    className={activeIndex === index ? 'dot active' : 'dot'}
                     onClick={() => onClick(index)}
                 ></span>
             )

@@ -10,23 +10,26 @@ class Panel extends Component {
     state = {
         active: false,
         child: null,
-        callback: () => {
-              
-        }
+        callback: () => {}
     }
 
-    open = ({ child, callback }) => {
+    open = ({ child = null, callback = () => {}, pProps = {} }) => {
         const _key = nanoid()
-        const _addInventory = React.createElement(child, { close: this.close, key: _key })
+        const _child = React.createElement(child, {
+            ...pProps,
+            close: this.close,
+            key: _key
+        })
+
         this.setState({
             active: true,
-            child: _addInventory,
+            child: _child,
             callback: callback
         })
     }
 
-    close = data => {   
-        this.setState({ active: false }),
+    close = data => {
+        this.setState({ active: false })
         this.state.callback(data)
     }
 
@@ -41,12 +44,12 @@ class Panel extends Component {
 
         return (
             <div className={_class[active]} >
-                <div className="overlay" onClick={this.close}></div>
+                <div className="overlay" onClick={() => this.close()}></div>
                 <div className="panel">
                     <div className="head">
-                        <span className="close" onClick={this.close}>x</span>
-                        {child}
+                        <span className="close" onClick={() => this.close()}>x</span>
                     </div>
+                    {child}
                 </div>
             </div>
         )

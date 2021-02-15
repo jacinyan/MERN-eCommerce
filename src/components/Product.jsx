@@ -1,7 +1,24 @@
 import React, { Component } from 'react'
 import { formatPrice } from "utils/formatPrice";
+import Panel from 'components/Panel'
+import EditInventory from 'components/EditInventory'
 
 export default class Product extends Component {
+
+    toEdit = () => {
+        Panel.open({
+            child: EditInventory,
+            pProps: {
+                product: this.props.product,
+                deleteProduct: this.props.delete
+            },
+            callback: data => {
+                if (data) {
+                    this.props.update(data)
+                }
+            }
+        })
+    }
 
     render() {
 
@@ -13,7 +30,12 @@ export default class Product extends Component {
 
         return (
             <div className={_pClass[status]}>
-                <div className="p-content">
+                <div className="product-content">
+                    <div className="head has-text-right" onClick={this.toEdit}>
+                        <span className="icon edit-btn">
+                            <i className="fas fa-sliders-h"></i>
+                        </span>
+                    </div>
                     <div className="img-wrapper">
                         <div className="out-stock-text">
                             Out of Stock
@@ -22,14 +44,14 @@ export default class Product extends Component {
                             <img src={image} alt={name} />
                         </figure>
                     </div>
-                    <p className="p-tags">
+                    <p className="tags">
                         {tags}
                     </p>
-                    <p className="p-name">
+                    <p className="name">
                         {name}
                     </p>
                 </div>
-                <div className="p-footer">
+                <div className="product-footer">
                     <p className="price">{formatPrice(price)}</p>
                     <button className="add-cart" disabled={status === 'unavailable'}>
                         <i className="fas fa-shopping-cart"></i>

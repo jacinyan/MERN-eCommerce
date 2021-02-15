@@ -43,12 +43,9 @@ const Carousel = () => {
         const timer = setInterval(() => {
             setActiveIndex(activeIndex === length ? 0 : activeIndex + 1)
         }, 5000)
-
         // timers.push(timer);
         // setTimers(timers => timers);
         // console.log(timers);
-
-
         const token = PubSub.subscribe('search', (_, text) => {
             if (text) {
                 setSearchActive(true)
@@ -59,7 +56,7 @@ const Carousel = () => {
 
 
         return () => {
-            // console.log('previous timer has been cleared');
+            // console.log('last effect has been cleared');
             clearInterval(timer)
             PubSub.unsubscribe(token)
         }
