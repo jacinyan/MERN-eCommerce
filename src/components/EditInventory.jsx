@@ -31,6 +31,7 @@ export default class EditInventory extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
+        // console.log({ ...this.state });
         const product = { ...this.state }
         axios.put(`products/${this.state.id}`, product)
             .then(response => {
