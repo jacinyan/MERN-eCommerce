@@ -15,10 +15,7 @@ export default class ProductsScreen extends Component {
 
     componentDidMount() {
         axios.get('/products')
-            .then(response => {
-                return response.data
-            }
-            )
+            .then(response => response.data)
             .then(data => {
                 this.setState(state => ({
                     products: [...data, ...state.products],
@@ -102,9 +99,7 @@ export default class ProductsScreen extends Component {
 
     updateItemNum = () => {
         axios.get('/carts')
-            .then(response => {
-                return response.data
-            })
+            .then(response => response.data)
             .then(data => {
                 const carts = data || []
                 const itemNum = carts.map(cart => cart.quantity).reduce((prev, curr) => prev + curr, 0)
