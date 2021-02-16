@@ -473,7 +473,7 @@ body {
 }
 
 // ------------ cart component --------
-.cart-page {
+.cart-screen {
     max-width: 1100px;
     margin: auto;
     margin-top: 1rem;
@@ -499,8 +499,8 @@ body {
             cursor: pointer;
         }
 
-        .cart-name {
-            width: 400px;
+        .item-name {
+            // width: 400px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -522,7 +522,7 @@ body {
             // }
         }
 
-        .sum-price {
+        .sub-total {
             font-weight: 600;
             color: rgb(214, 111, 111);
             // &::before {

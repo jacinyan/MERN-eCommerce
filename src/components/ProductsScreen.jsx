@@ -28,11 +28,11 @@ export default class ProductsScreen extends Component {
             .catch(error => {
                 console.log(error);
             })
-
+        
+        // get itemNum every render
         this.updateItemNum()
 
         this.token = PubSub.subscribe('search', (_, text) => {
-
             try {
                 let _products = [...this.state.sourceProducts]
                 // console.log('before filtering', _products);
@@ -51,11 +51,6 @@ export default class ProductsScreen extends Component {
                 console.log(error);
             }
         })
-
-    }
-
-    componentWillUnmount() {
-        PubSub.unsubscribe(this.token)
     }
 
     toAdd = () => {
@@ -118,6 +113,10 @@ export default class ProductsScreen extends Component {
             .catch(error => {
                 console.log(error);
             })
+    }
+
+    componentWillUnmount() {
+        PubSub.unsubscribe(this.token)
     }
 
     render() {

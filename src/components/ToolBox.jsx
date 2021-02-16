@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import PubSub from 'pubsub-js'
 
-export default class ToolBox extends Component {
+class ToolBox extends Component {
 
     state = {
         searchText: '',
         itemNum: 0
+    }
+
+    componentDidMount() {
+        this.token = PubSub.subscribe('itemNum', (_, itemNum) => {
+            this.setState({
+                itemNum: itemNum
+            })
+        })
     }
 
     handleChange = e => {
@@ -19,18 +28,14 @@ export default class ToolBox extends Component {
         PubSub.publish('search', '')
     }
 
-    componentDidMount() {
-        this.token = PubSub.subscribe('itemNum', (_, itemNum) => {
-            this.setState({
-                itemNum: itemNum
-            })
-        })
+
+    goToCart = () => {
+        this.props.history.push('/cart')
     }
 
     componentWillUnmount() {
         PubSub.unsubscribe(this.token)
     }
-
 
     render() {
         return (
@@ -52,7 +57,7 @@ export default class ToolBox extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="cart">
+                <div className="cart" onClick={this.goToCart}>
                     <i className="fas fa-shopping-cart"></i>
                     <span className="item">({this.state.itemNum})</span>
                 </div>
@@ -60,3 +65,4 @@ export default class ToolBox extends Component {
         )
     }
 }
+export default withRouter(ToolBox)
