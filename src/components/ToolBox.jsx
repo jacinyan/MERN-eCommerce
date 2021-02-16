@@ -4,7 +4,8 @@ import PubSub from 'pubsub-js'
 export default class ToolBox extends Component {
 
     state = {
-        searchText: ''
+        searchText: '',
+        itemNum: 0
     }
 
     handleChange = e => {
@@ -17,6 +18,19 @@ export default class ToolBox extends Component {
         this.setState({ searchText: '' })
         PubSub.publish('search', '')
     }
+
+    componentDidMount() {
+        this.token = PubSub.subscribe('itemNum', (_, itemNum) => {
+            this.setState({
+                itemNum: itemNum
+            })
+        })
+    }
+
+    componentWillUnmount() {
+        PubSub.unsubscribe(this.token)
+    }
+
 
     render() {
         return (
@@ -38,9 +52,9 @@ export default class ToolBox extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="cart-box">
+                <div className="cart">
                     <i className="fas fa-shopping-cart"></i>
-                    <span className="cart-num">(0)</span>
+                    <span className="item">({this.state.itemNum})</span>
                 </div>
             </div>
         )

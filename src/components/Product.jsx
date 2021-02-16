@@ -5,6 +5,7 @@ import EditInventory from 'components/EditInventory'
 import axios from 'config/axios'
 import { toast } from 'react-toastify'
 
+
 export default class Product extends Component {
 
     toEdit = () => {
@@ -47,12 +48,10 @@ export default class Product extends Component {
                 await axios.post('/carts', cart)
             }
             toast.success('Successfully added to cart')
-
+            this.props.updateItemNum()
         } catch (error) {
             toast.error('Failed to add to cart')
         }
-
-
     }
 
     render() {

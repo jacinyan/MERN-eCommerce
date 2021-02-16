@@ -29,6 +29,8 @@ export default class ProductsScreen extends Component {
                 console.log(error);
             })
 
+        this.updateItemNum()
+
         this.token = PubSub.subscribe('search', (_, text) => {
 
             try {
@@ -49,6 +51,7 @@ export default class ProductsScreen extends Component {
                 console.log(error);
             }
         })
+
     }
 
     componentWillUnmount() {
@@ -102,6 +105,21 @@ export default class ProductsScreen extends Component {
         })
     }
 
+    updateItemNum = () => {
+        axios.get('/carts')
+            .then(response => {
+                return response.data
+            })
+            .then(data => {
+                const carts = data || []
+                const itemNum = carts.map(cart => cart.quantity).reduce((prev, curr) => prev + curr, 0)
+                PubSub.publish('itemNum', itemNum)
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     render() {
         return (
             <div>
@@ -112,7 +130,12 @@ export default class ProductsScreen extends Component {
                             (
                                 <CSSTransition classNames='product-fade' timeout={300} key={product.id}>
                                     <div className="column is-3" key={product.id}>
-                                        <Product product={product} update={this.update} delete={this.delete}/>
+                                        <Product
+                                            product={product}
+                                            update={this.update}
+                                            delete={this.delete}
+                                            updateItemNum={this.updateItemNum}
+                                        />
                                     </div>
                                 </CSSTransition>
                             )
