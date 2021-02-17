@@ -31,7 +31,7 @@ export default class Product extends Component {
             const response = await axios.get(`/carts?productId=${id}`)
 
             const carts = response.data
-            // console.log(carts);
+            console.log(carts);
 
             if (carts && carts.length > 0) {
                 const cart = carts[0]

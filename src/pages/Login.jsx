@@ -1,61 +1,67 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { useForm } from 'react-hook-form'
 
-export default class Login extends Component {
+export default function Login(props) {
 
-    state = {
-        email: '',
-        password: ''
+    const { register, handleSubmit, errors } = useForm()
+
+    const onSubmit = data => {
+        console.log(data);
+
     }
 
-    handleSubmit = e => {
-        e.preventDefault()
-        // const formData = {
-
-        // }
-    }
-
-    handleChange = e => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
-
-
-    render() {
-        return (
-            <div className="login-wrapper">
-                <form className="box login-box" onSubmit={this.handleSubmit}>
-                    <div className="field">
-                        <label className="label">Email</label>
-                        <div className="control">
-                            <input 
-                            className="input" 
-                            type="text" 
+    return (
+        <div className="login-wrapper">
+            <form className="box login-box" onSubmit={handleSubmit(onSubmit)}>
+                <div className="field">
+                    <label className="label">Email</label>
+                    <div className="control">
+                        <input
+                            className={`input ${errors.email && 'is-danger'}`}
+                            type="text"
                             name="email"
                             placeholder="Email"
-                            value = {this.state.email} 
-                            onChange = {this.handleChange}
-                            />
-                        </div>
+                            ref={register({
+                                required: 'Email is required',
+                                pattern: {
+                                    value: /^[A-Za-z0-9]+([_\\.][A-Za-z0-9]+)*@([A-Za-z0-9\\-]+\.)+[A-Za-z]{2,6}$/,
+                                    message: 'Invalid Email'
+                                }
+                            }
+                            )}
+                        />
+                        {
+                            errors.email && <p className="helper has-text-danger">*{errors.email.message}</p>
+                        }
                     </div>
-                    <div className="field">
-                        <label className="label">Password</label>
-                        <div className="control">
-                            <input 
-                            className="input" 
-                            type="password" 
-                            name="password"
-                            placeholder="Password" 
-                            value = {this.state.password} 
-                            onChange = {this.handleChange}
-                            />
-                        </div>
-                    </div>
+                </div>
+                <div className="field">
+                    <label className="label">Password</label>
                     <div className="control">
-                        <button className="button is-fullwidth is-primary">Login</button>
+                        <input
+                            className={`input ${errors.password && 'is-danger'}`}
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            ref={register({
+                                required: 'Password is required',
+                                minLength: {
+                                    value: 6,
+                                    message: 'Must be at least 6 char long' 
+                                  }
+                            }
+                            )}
+                        />
+                        {
+                            errors.password && <p className="helper has-text-danger">*{errors.password.message}</p>
+                        }
                     </div>
-                </form>
-            </div>
-        )
-    }
+                </div>
+                <div className="control">
+                    <button className="button is-fullwidth is-primary">Login</button>
+                </div>
+            </form>
+        </div>
+    )
 }
+

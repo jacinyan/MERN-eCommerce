@@ -21,10 +21,6 @@ const Cart = () => {
             })
     }, [])
 
-    const totalPrice = useMemo(() => () => carts
-                                        .map(cart => cart.quantity * parseInt(cart.price))
-                                        .reduce((prev, curr) => prev + curr, 0), [carts])
-
     const updateCart = cart => {
         const newCarts = [...carts]
         const _index = newCarts.findIndex(newCart => newCart.id === cart.id)
@@ -36,6 +32,10 @@ const Cart = () => {
         const _carts = carts.filter(_cart => _cart.id !== cart.id)
         setCarts(_carts)
     }
+
+    const totalPrice = useMemo(() => () => carts
+        .map(cart => cart.quantity * parseInt(cart.price))
+        .reduce((prev, curr) => prev + curr, 0), [carts])
 
     return (
         < Layout >

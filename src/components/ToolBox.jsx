@@ -11,6 +11,7 @@ class ToolBox extends Component {
 
     componentDidMount() {
         this.token = PubSub.subscribe('itemNum', (_, itemNum) => {
+            console.log(itemNum);
             this.setState({
                 itemNum: itemNum
             })

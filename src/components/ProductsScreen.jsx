@@ -26,7 +26,7 @@ export default class ProductsScreen extends Component {
                 console.log(error);
             })
         
-        // get itemNum every render
+        // get itemNum on a new render
         this.updateItemNum()
 
         this.token = PubSub.subscribe('search', (_, text) => {
@@ -101,6 +101,7 @@ export default class ProductsScreen extends Component {
         axios.get('/carts')
             .then(response => response.data)
             .then(data => {
+                console.log(data);
                 const carts = data || []
                 const itemNum = carts.map(cart => cart.quantity).reduce((prev, curr) => prev + curr, 0)
                 PubSub.publish('itemNum', itemNum)

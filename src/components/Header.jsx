@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react'
+import {Link} from 'react-router-dom'
 
 const Header = ({ username }) => (
     <div className='header'>
         <div className='grid'>
             <div className="start">
-                <a href="/">Home</a>
+                <Link to="/">Home</Link>
             </div>
             <div className="end">
                 {username ?
@@ -14,8 +15,8 @@ const Header = ({ username }) => (
                     </span>
                     :
                     <Fragment>
-                        <a href="/">Login</a>
-                        <a href="/">Register</a>
+                        <Link to="/login">Login</Link>
+                        <Link to="/">Register</Link>
                     </Fragment>
                 }
             </div>
