@@ -8,6 +8,7 @@ import AddInventory from "components/AddInventory";
 
 export default class ProductsScreen extends Component {
 
+
     state = {
         products: [],
         sourceProducts: []

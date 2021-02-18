@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import axios from 'config/axios'
 import { toast } from 'react-toastify'
 
-export default function Login({history}) {
+const Login = ({history}) => {
 
     const { register, handleSubmit, errors } = useForm()
 
@@ -79,3 +79,4 @@ export default function Login({history}) {
     )
 }
 
+export default Login

@@ -13,10 +13,10 @@ class Panel extends Component {
         callback: () => {}
     }
 
-    open = ({ child = null, callback = () => {}, pProps = {} }) => {
+    open = ({ child = null, callback = () => {}, props = {} }) => {
         const _key = nanoid()
         const _child = React.createElement(child, {
-            ...pProps,
+            ...props,
             close: this.close,
             key: _key
         })

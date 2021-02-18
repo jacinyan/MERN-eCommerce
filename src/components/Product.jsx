@@ -11,7 +11,7 @@ export default class Product extends Component {
     toEdit = () => {
         Panel.open({
             child: EditInventory,
-            pProps: {
+            props: {
                 product: this.props.product,
                 deleteProduct: this.props.delete
             },
