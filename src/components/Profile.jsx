@@ -1,6 +1,11 @@
 import React from 'react'
 
-const Profile = ({close, user:{username, email, role}}) => {
+const Profile = ({ close, user: { username, email, role }}) => {
+
+    const logout = () => {
+        global.auth.logout()
+        close('logout')
+    }
 
     return (
         <div className="profile">
@@ -28,19 +33,19 @@ const Profile = ({close, user:{username, email, role}}) => {
                 </div>
             </fieldset>
             <br />
-                <br />
-                <div className="field is-grouped is-grouped-centered">
-                    <div className="control">
-                        <button className="button is-danger">
-                            Logout
-                        </button>
-                    </div>
-                    <div className="control">
-                        <button className="button is-link" type="button" onClick={() => { close() }}>
-                            Cancel
-                        </button>
-                    </div>
+            <br />
+            <div className="field is-grouped is-grouped-centered">
+                <div className="control">
+                    <button className="button is-danger" onClick={logout} type="button">
+                        Logout
+                    </button>
                 </div>
+                <div className="control">
+                    <button className="button is-link" type="button" onClick={() => { close() }}>
+                        Cancel
+                        </button>
+                </div>
+            </div>
         </div>
     )
 }

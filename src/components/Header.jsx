@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Panel from 'components/Panel'
 import Profile from './Profile'
 
 const Header = ({ user, user: { username } }) => {
+
+    const history = useHistory()
 
     const toProfile = () => {
         Panel.open({
@@ -13,6 +15,9 @@ const Header = ({ user, user: { username } }) => {
             },
             callback: data => {
                 console.log(data);
+                if (data === 'logout'){
+                    history.go(0)
+                }
             }
         })
     }

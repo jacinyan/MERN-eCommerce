@@ -36,7 +36,12 @@ const getUser = () => {
     }
 }
 
+const logout = () => {
+  localStorage.removeItem(TOKEN)
+}
+
 global.auth = {
     setToken,
-    getUser
+    getUser,
+    logout
 }

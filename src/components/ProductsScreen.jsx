@@ -101,7 +101,6 @@ export default class ProductsScreen extends Component {
         axios.get('/carts')
             .then(response => response.data)
             .then(data => {
-                console.log(data);
                 const carts = data || []
                 const itemNum = carts.map(cart => cart.quantity).reduce((prev, curr) => prev + curr, 0)
                 PubSub.publish('itemNum', itemNum)
