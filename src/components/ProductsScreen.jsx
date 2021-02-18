@@ -36,8 +36,7 @@ export default class ProductsScreen extends Component {
 
                 _products = _products.filter(product => {
                     const matchedArray = product.name.match(new RegExp(text, 'gi'))
-                    // return matchedArray !== null
-                    return !!matchedArray
+                    return matchedArray !== null
                 })
 
                 // console.log('after filtering', _products);

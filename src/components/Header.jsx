@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-const Header = ({ username }) => (
+const Header = ({ user: { username } }) => (
     <div className='header'>
         <div className='grid'>
             <div className="start">

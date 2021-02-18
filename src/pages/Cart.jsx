@@ -34,8 +34,8 @@ const Cart = () => {
     }
 
     const totalPrice = useMemo(() => () => carts
-        .map(cart => cart.quantity * parseInt(cart.price))
-        .reduce((prev, curr) => prev + curr, 0), [carts])
+                                           .map(cart => cart.quantity * parseInt(cart.price))
+                                           .reduce((prev, curr) => prev + curr, 0), [carts])
 
     return (
         < Layout >

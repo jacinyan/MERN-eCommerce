@@ -1,13 +1,27 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import axios from 'config/axios'
+import { toast } from 'react-toastify'
 
-export default function Login(props) {
+export default function Login({history}) {
 
     const { register, handleSubmit, errors } = useForm()
 
     const onSubmit = data => {
-        console.log(data);
+        const { email, password } = data
 
+        axios.post('/auth/login', { email, password })
+            .then(response => {
+                const jwToken = response.data
+                // console.log(jwToken);
+                global.auth.setToken(jwToken)
+                toast.success('Login Successful')
+                history.push('/')
+            })
+            .catch(error => {
+                // console.log(error.response.data);
+                toast.error(error.response.data.message)
+            })
     }
 
     return (
@@ -47,8 +61,8 @@ export default function Login(props) {
                                 required: 'Password is required',
                                 minLength: {
                                     value: 6,
-                                    message: 'Must be at least 6 char long' 
-                                  }
+                                    message: 'Must be at least 6 char long'
+                                }
                             }
                             )}
                         />
