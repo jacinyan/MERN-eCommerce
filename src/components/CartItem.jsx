@@ -7,8 +7,8 @@ const CartItem = ({ cart = {}, cart: { id, name, image, price, quantity: initQua
     const [quantity, setQuantity] = useState(initQuantity)
 
     const subTotal = useMemo(() => {
-      return formatPrice(quantity * parseInt(price))
-    },[quantity, price])
+        return formatPrice(quantity * parseInt(price))
+    }, [quantity, price])
 
     const handleQuantity = e => {
         const _quantity = parseInt(e.target.value)
@@ -25,9 +25,9 @@ const CartItem = ({ cart = {}, cart: { id, name, image, price, quantity: initQua
 
     const deleteCart = () => {
         axios.delete(`/carts/${id}`)
-        .then(() => {
-            deleteCartUpdate(cart)
-        })
+            .then(() => {
+                deleteCartUpdate(cart)
+            })
     }
 
     return (

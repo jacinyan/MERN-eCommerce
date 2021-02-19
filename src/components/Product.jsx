@@ -4,9 +4,9 @@ import Panel from 'components/Panel'
 import EditInventory from 'components/EditInventory'
 import axios from 'config/axios'
 import { toast } from 'react-toastify'
+import { withRouter } from 'react-router-dom'
 
-
-export default class Product extends Component {
+class Product extends Component {
 
     toEdit = () => {
         Panel.open({
@@ -24,6 +24,12 @@ export default class Product extends Component {
     }
 
     addToCart = async () => {
+
+        if (!global.auth.isLoggedIn()) {
+            this.props.history.push('/login')
+            toast.info('Please login to continue')
+            return
+        }
 
         try {
             const { id, name, price, image } = this.props.product
@@ -54,6 +60,19 @@ export default class Product extends Component {
         }
     }
 
+    showAdminControl = () => {
+        const user = global.auth.getUser() || {}
+        if (user.role === 1) {
+            return (
+                <div className="head has-text-right" onClick={this.toEdit}>
+                    <span className="icon edit-btn">
+                        <i className="fas fa-sliders-h"></i>
+                    </span>
+                </div>
+            )
+        }       
+    }
+
     render() {
 
         const { image, name, tags, price, status } = this.props.product
@@ -65,11 +84,7 @@ export default class Product extends Component {
         return (
             <div className={_pClass[status]}>
                 <div className="product-content">
-                    <div className="head has-text-right" onClick={this.toEdit}>
-                        <span className="icon edit-btn">
-                            <i className="fas fa-sliders-h"></i>
-                        </span>
-                    </div>
+                    {this.showAdminControl()}
                     <div className="img-wrapper">
                         <div className="out-stock-text">
                             Out of Stock
@@ -96,3 +111,5 @@ export default class Product extends Component {
         )
     }
 }
+
+export default withRouter(Product)

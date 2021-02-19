@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import PubSub from 'pubsub-js'
+import { toast } from 'react-toastify'
 
 class ToolBox extends Component {
 
@@ -30,6 +31,12 @@ class ToolBox extends Component {
 
 
     goToCart = () => {
+        if (!global.auth.isLoggedIn()) {
+            this.props.history.push('/login')
+            toast.info('Please login to continue')
+            return 
+        }
+
         this.props.history.push('/cart')
     }
 
