@@ -184,7 +184,7 @@ body {
 
 // --------- Carousel component ------------
 .carousel-container {
-    height: 50vh;
+    height: 80vh;
     width: 100%;
     position: relative;
     margin: auto;
@@ -205,7 +205,7 @@ body {
 // --------- Carousel Content component ------------
 
 .slide {
-    height: 50vh;
+    height: 80vh;
     width: 100%;
     position: relative;
 
@@ -231,13 +231,22 @@ body {
         color: white;
         position: absolute;
         text-align: center;
-        top: 50%;
-        z-index: 9
+        top: 32%;
+        z-index: 9;
+        font-family: cursive;
+    }
+
+    &-title {
+        font-size: 130px;
+        
     }
 
     &-text {
         top: 70%;
     }
+
+    
+
 }
 
 // --------- Arrows component ------------
@@ -301,11 +310,13 @@ body {
     max-width: 1100px;
     margin: auto;
     padding: 1.4rem 0;
+    position: relative;
 
     .add-btn {
-        position: fixed;
+        position: absolute;
         right: 0;
-        top: 36rem;
+        top: 1.4rem;
+        transform: translateX(120%);
         z-index: 99;
     }
 }

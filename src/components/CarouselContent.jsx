@@ -1,28 +1,5 @@
 import React from 'react'
-
-const slides = [
-    {
-        title: '1slide',
-        description: '1st slide',
-        url: 'https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg'
-    },
-    {
-        title: '2slide',
-        description: '2nd slide',
-        url: 'https://mdbootstrap.com/img/Photos/Slides/img%20(131).jpg'
-    },
-    {
-        title: '3slide',
-        description: '3rd slide',
-        url: 'https://mdbootstrap.com/img/Photos/Slides/img%20(132).jpg'
-    },
-    {
-        title: '4slide',
-        description: '4th slide',
-        url: 'https://mdbootstrap.com/img/Photos/Slides/img%20(133).jpg'
-    },
-
-]
+import {slides} from 'utils/sliderImages'
 
 const Content = ({ activeIndex }) => {
     return (
@@ -33,7 +10,7 @@ const Content = ({ activeIndex }) => {
                     className={index === activeIndex ? 'slide active' : 'slide inactive'}
                 >
                     <img className='slide-image' src={slide.url} alt='' />
-                    <h3 className='slide-title'>{slide.title}</h3>
+                    <div className='slide-title'>React Caps</div>
                     <p className='slide-text'>{slide.description}</p>
                 </div>
             )}

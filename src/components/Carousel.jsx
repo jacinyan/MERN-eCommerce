@@ -3,31 +3,7 @@ import CarouselContent from 'components/CarouselContent'
 import Arrows from 'components/Arrows'
 import Dots from 'components/Dots'
 import PubSub from "pubsub-js";
-
-
-const slides = [
-    {
-        id: 1,
-        description: '1st slide',
-        url: 'https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg'
-    },
-    {
-        id: 2,
-        description: '2nd slide',
-        url: 'https://mdbootstrap.com/img/Photos/Slides/img%20(131).jpg'
-    },
-    {
-        id: 3,
-        description: '3rd slide',
-        url: 'https://mdbootstrap.com/img/Photos/Slides/img%20(132).jpg'
-    },
-    {
-        id: 4,
-        description: '4th slide',
-        url: 'https://mdbootstrap.com/img/Photos/Slides/img%20(133).jpg'
-    },
-
-]
+import {slides} from 'utils/sliderImages'
 
 const length = slides.length - 1
 
