@@ -11,7 +11,8 @@ const Cart = () => {
     const [carts, setCarts] = useState([])
 
     useEffect(() => {
-        axios.get('/carts')
+        const user = global.auth.getUser() || {}
+        axios.get(`/carts?userId=${user.email}`)
             .then(response => response.data)
             .then(data => {
                 setCarts(data)

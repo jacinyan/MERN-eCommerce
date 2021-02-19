@@ -5,10 +5,20 @@ const axios = baseURL => {
         baseURL: baseURL || 'http://localhost:9090',
         timeout: 1000,
     });
-   return instance
+
+    instance.interceptors.request.use(
+        config => {
+            const jwToken = global.auth.getToken()
+            config.headers['Authorization'] = 'Bearer ' + jwToken
+            return config;
+        }, 
+        error => {
+            return Promise.reject(error);
+        });
+
+    return instance
 }
 
-// for passing 'baseURL' param
 export {
     axios
 }

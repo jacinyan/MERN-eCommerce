@@ -26,7 +26,7 @@ export default class ProductsScreen extends Component {
             .catch(error => {
                 console.log(error);
             })
-        
+
         // get itemNum on a new render
         this.updateItemNum()
 
@@ -98,7 +98,12 @@ export default class ProductsScreen extends Component {
     }
 
     updateItemNum = () => {
-        axios.get('/carts')
+        const user = global.auth.getUser() || {}
+        axios.get('/carts', {
+            params: {
+                userId: user.email
+            }
+        })
             .then(response => response.data)
             .then(data => {
                 const carts = data || []
@@ -136,7 +141,11 @@ export default class ProductsScreen extends Component {
                             )}
                         </TransitionGroup>
                     </div>
-                    <button className="button is-primary add-btn" onClick={this.toAdd}>add</button>
+                    {
+                        (global.auth.getUser() || {}).role === 1 && (
+                            <button className="button is-primary add-btn" onClick={this.toAdd}>add</button>
+                        )
+                    }
                 </div>
             </div>
         )
