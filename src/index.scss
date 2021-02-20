@@ -307,7 +307,7 @@ body {
 // ------- ProductsScreen component ---------
 
 .products-screen {
-    max-width: 1100px;
+    max-width: 1180px;
     margin: auto;
     padding: 1.4rem 0;
     position: relative;
@@ -317,7 +317,7 @@ body {
         right: 0;
         top: 1.6rem;
         transform: translateX(120%);
-        z-index: 99;
+        z-index: 300;
     }
 }
 
@@ -643,5 +643,10 @@ body {
 
     .login-box {
         width: 100%;
+    }
+
+    .slide-title {
+        font-size: 4rem;
+        top: 40%
     }
 }
