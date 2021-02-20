@@ -34,9 +34,9 @@ In terminal, cd into the root directory and type in `yarn install` to install al
 
 ### Running
 
-With dependencies installed，in terminal type in `yarn start`.
+With dependencies installed, in terminal type in `yarn start`.
 
-After server start, the opening of browser will be enbaled automatically with content displayed at `localhost:3000` by default. 
+After server start, the opening of browser will be enabled automatically with content displayed at `localhost:3000` by default. 
 
 If this is disabled, please visit the URL manually.
 
@@ -67,7 +67,7 @@ If this is disabled, please visit the URL manually.
     │   │   ├─ Cart.jsx 
     │   │   ├─ Login.jsx 
     │   │   ├─ NotFound.jsx
-    │   │   ├─ Regisger.jsx 
+    │   │   ├─ Register.jsx 
     │   ├─ services/ 
     │   │   ├─ auth.js 
     │   ├─ utils/
@@ -80,7 +80,7 @@ If this is disabled, please visit the URL manually.
 
 ### Description
 
- - Sass precompiler for application layout
+ - Sass preprocessor for application layout
  - React-Route for frontend routing
  - JSON server as backend for mock data
  - Axios for HTTP requests
