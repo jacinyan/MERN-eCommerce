@@ -1,4 +1,3 @@
-```
 # React Caps
 
 **Carousel**
@@ -86,5 +85,3 @@ If this is disabled, please visit the URL manually.
  - JSON server as backend for mock data
  - Axios for HTTP requests
  - Native DOM manipulation for a popup panel
- 
-```
