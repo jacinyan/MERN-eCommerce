@@ -2,15 +2,15 @@
 
 **Carousel**
 
-![carousel]('/public/doc/1.png')
+![carousel](./public/doc/1.png)
 
 **ProductsScreen**
 
-![carousel]('/public/doc/2.png')
+![products](public/doc/2.png)
 
 **Shoppint Cart**
 
-![carousel]('/public/doc/3.png')
+![cart](public/doc/3.png)
 
 ## Tech Stack
 
@@ -30,7 +30,7 @@
 
 (NodeJS runtime is required)
 
-In terminal, cd into the root directory and type in 'yarn install' to install all dependencies.
+In terminal, cd into the root directory and type in `yarn install` to install all dependencies.
 
 ### Running
 
