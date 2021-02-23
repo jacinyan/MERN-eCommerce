@@ -32,6 +32,8 @@
 
 In terminal, cd into the root directory and type in `yarn install` to install all dependencies.
 
+JSON Server can be downloaded here: https://github.com/jacinyan/react-caps-api
+
 ### Running
 
 With dependencies installed, in terminal type in `yarn start`.
